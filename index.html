@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>パーソナル事業 業務マニュアル</title>
+<title>フラスコ100cc パーソナル事業 業務マニュアル</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
 
@@ -281,7 +281,6 @@
   }
   article.doc > .dochead{
     display:flex;
-    justify-content:space-between;
     align-items:flex-start;
     gap:16px;
     flex-wrap:wrap;
@@ -290,6 +289,8 @@
   article.doc h3{
     font-size:19.5px;
     font-weight:700;
+    flex:1 1 auto;
+    min-width:0;
   }
   article.doc .subnum{
     font-family:'JetBrains Mono',monospace;
@@ -302,6 +303,32 @@
     display:flex;
     gap:8px;
     flex-wrap:wrap;
+    flex:0 0 auto;
+  }
+  .copylink-btn{
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    font-family:inherit;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:4px 9px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .copylink-btn:hover{
+    background:var(--accent-soft);
+    color:var(--accent-soft-ink);
+    border-color:var(--accent);
+  }
+  .copylink-btn.copied{
+    background:var(--accent-soft);
+    color:var(--accent-soft-ink);
+    border-color:var(--accent);
   }
   article.doc .lede{
     color:var(--ink-soft);
@@ -381,14 +408,6 @@
   .callout ul{margin-bottom:0;}
   .callout table{margin-bottom:0;}
 
-  .sourcelist{
-    margin-top:10px;
-    font-size:12px;
-    color:var(--ink-faint);
-    border-top:1px dashed var(--border);
-    padding-top:10px;
-  }
-
   .flowlist{list-style:none; padding-left:0; counter-reset:flow;}
   .flowlist > li{
     counter-increment:flow;
@@ -459,19 +478,68 @@
     padding:0 2px;
   }
 
+  #navToggle{
+    display:none;
+    position:fixed;
+    top:14px; left:14px;
+    z-index:60;
+    width:42px; height:42px;
+    align-items:center; justify-content:center;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--ink);
+    font-size:19px;
+    box-shadow:var(--shadow);
+    cursor:pointer;
+  }
+
   @media (max-width:900px){
     .shell{grid-template-columns:1fr;}
-    .sidebar{position:relative; height:auto; top:auto;}
+    #navToggle{display:flex;}
+    .sidebar{
+      display:none;
+      position:fixed;
+      inset:0;
+      top:0;
+      z-index:55;
+      height:100vh;
+      width:100%;
+      padding-top:70px;
+    }
+    body.nav-open .sidebar{display:block;}
+    body.nav-open{overflow:hidden;}
     main{padding:32px 20px 100px;}
+  }
+
+  @media print{
+    :root, :root[data-theme="dark"]{
+      --bg:#ffffff; --surface:#ffffff; --surface-2:#f3f1e8;
+      --ink:#111111; --ink-soft:#333333; --ink-faint:#555555;
+      --border:#cccccc; --border-strong:#999999;
+      --accent:#23406b; --accent-ink:#ffffff; --accent-soft:#e7edf5; --accent-soft-ink:#23406b;
+      --amber:#8f5f14; --amber-soft:#f7ecd6; --amber-line:#dcbb7c;
+      --red:#9c3b2e; --red-soft:#f6e5e0; --red-line:#dcaa9d;
+      --mono-bg:#eeeee4; --mono-ink:#333333;
+      --shadow:none;
+    }
+    body{background:#fff;}
+    .shell{display:block;}
+    .sidebar, #navToggle, #backtop, .search-wrap, .copylink-btn{display:none !important;}
+    main{padding:0; max-width:100%;}
+    article.doc{box-shadow:none; border:1px solid var(--border); break-inside:avoid; page-break-inside:avoid;}
+    .catgroup{break-inside:avoid-page;}
+    a{color:var(--ink); text-decoration:underline;}
   }
 </style>
 </head>
 <body>
 
+<button id="navToggle" type="button" aria-label="メニューを開く" aria-expanded="false">☰</button>
+
 <div class="shell">
   <aside class="sidebar">
     <div class="brand">
-      <div class="co">株式会社フラスコ100cc ／ パーソナル事業</div>
       <h1>業務マニュアル</h1>
     </div>
     <div class="search-wrap">
@@ -481,7 +549,7 @@
       <details open>
         <summary><span class="num">I</span> はじめに</summary>
         <ul>
-          <li><a href="#intro-business">1.1 個人販売事業とは</a></li>
+          <li><a href="#intro-business">1.1 パーソナル事業とは</a></li>
           <li><a href="#intro-flow">1.2 商品ができるまでの流れ</a></li>
           <li><a href="#intro-systems">1.3 使用システム一覧</a></li>
           <li><a href="#intro-howto">1.4 このマニュアルの読み方</a></li>
@@ -599,14 +667,7 @@
 
   <main id="mainContent">
     <div class="hero" id="top">
-      <div class="co">個人販売（パーソナル事業） ／ 業務マニュアル統合版</div>
-      <h1>パーソナル事業 業務マニュアル</h1>
-      <p class="lede">Amazon・楽天市場・Yahoo!ショッピング・自社サイトでのスポーツウェア販売業務について、商品登録から在庫管理・注文処理・広告運用・レポート作成までを1冊にまとめたものです。左のメニューから該当のカテゴリーを開いてください。</p>
-      <div class="meta-row">
-        <span class="chip">📄 元ファイル 26件を統合</span>
-        <span class="chip">🔄 モール基本情報は2026年9月時点でWeb調査のうえ更新</span>
-        <span class="chip">🆕 Yahoo!ショッピング基本情報を新規作成</span>
-      </div>
+      <h1>フラスコ100cc パーソナル事業 業務マニュアル</h1>
     </div>
 
     <section class="catgroup" id="cat-intro">
@@ -615,9 +676,9 @@
 
       <article class="doc" id="intro-business">
         <div class="dochead">
-          <h3><span class="subnum">1.1</span>個人販売事業とは</h3>
+          <h3><span class="subnum">1.1</span>パーソナル事業とは</h3>
         </div>
-        <p>個人販売は、ECモール（Amazon・楽天市場・Yahoo!ショッピング）と自社サイトでのスポーツウェア販売の運営を担う事業です。各モールは運営会社が異なりますが、実際の業務内容は共通する部分が多くあります。</p>
+        <p>パーソナル事業は、ECモール（Amazon・楽天市場・Yahoo!ショッピング）と自社サイトでのスポーツウェア販売の運営を担う事業です。各モールは運営会社が異なりますが、実際の業務内容は共通する部分が多くあります。</p>
         <div class="grid2">
           <div class="minicard">
             <h5>利用しているECモール</h5>
@@ -625,7 +686,7 @@
               <li>Amazon（各アカウントごとにストアページあり）</li>
               <li>楽天市場：<a href="https://www.rakuten.co.jp/sportstailors/" target="_blank" rel="noopener">sportstailors店</a></li>
               <li>Yahoo!ショッピング：<a href="https://store.shopping.yahoo.co.jp/sportstailors/" target="_blank" rel="noopener">sportstailors店</a></li>
-              <li>自社サイト（BFIVE個人販売サイト 他）</li>
+              <li>自社サイト（BFIVEパーソナルサイト 他）</li>
             </ul>
           </div>
           <div class="minicard">
@@ -641,25 +702,11 @@
             </ul>
           </div>
         </div>
-        <p>商品部の企画・デザイン・WEBチームと業務内容は似ていますが、個人販売ではチーム編成をせずほぼすべての工程を自分たちだけで行います。作り込みが必要な部分（WEBデザイン・商品写真・説明画像など）は企画チームへ依頼することもあります。</p>
+        <p>商品部の企画・デザイン・WEBチームと業務内容は似ていますが、パーソナル事業ではチーム編成をせずほぼすべての工程を自分たちだけで行います。作り込みが必要な部分（WEBデザイン・商品写真・説明画像など）は企画チームへ依頼することもあります。</p>
         <div class="callout ref">
           <div class="ctitle">🔎 競合他社の調べ方</div>
           <p style="margin-bottom:6px;">手っ取り早いのはInstagramのハッシュタグ検索です（例：#プラシャツ＝プラクティスシャツの略称、英語でも検索するとヒットしやすい）。ネットで「バスケ ウェア 人気」のようにキーワード検索して1つずつ見ていく方法や、「各スポーツの人気ウェアまとめ」のようなサイトから競合をたどる方法も有効です。日々の市場調査・SNSチェック・プロスポーツ観戦・大会やサークルへの参加なども情報収集の手段になります。</p>
         </div>
-        <h4>主な競合他社（例）</h4>
-        <table>
-          <thead><tr><th>バスケットボール</th><th>サッカー</th></tr></thead>
-          <tbody>
-            <tr><td>バイオレーラ、オフリミッツ（同一運営会社）</td><td>XF</td></tr>
-            <tr><td>エゴザル</td><td>トレス（フットボール）</td></tr>
-            <tr><td>トレス（バスケットボール）</td><td>スボルメ</td></tr>
-            <tr><td>AKTR</td><td>ゴレアドール</td></tr>
-            <tr><td>ボーラーホリック（チームオーダーなし）</td><td>ルースイソンブラ</td></tr>
-            <tr><td>ARCH（チームオーダーなし）</td><td></td></tr>
-          </tbody>
-        </table>
-        <p style="font-size:12.5px;color:var(--ink-faint);margin-top:-6px;">Googleで「バスケ バスパン」のように検索すると他の競合も見つかります。一覧は定期的に見直してください。</p>
-        <div class="sourcelist">出典：個人販売業務内容説明.docx／.pdf、memo兼マニュアル.xlsx（競合他社一覧シート）</div>
       </article>
 
       <article class="doc" id="intro-flow">
@@ -677,7 +724,6 @@
           <li><strong>ECモールの登録</strong> — Amazon／itemRobot（楽天・Yahoo!）専用CSVで商品登録、広告設定</li>
           <li><strong>在庫システムの登録</strong> — 専用CSVで登録</li>
         </ol>
-        <div class="sourcelist">出典：個人販売業務内容説明.docx／.pdf</div>
       </article>
 
       <article class="doc" id="intro-systems">
@@ -804,7 +850,6 @@
             <tr><td>出品レポート</td><td>在庫＞出品レポート（編集後、一括商品登録で反映可）</td></tr>
           </tbody>
         </table>
-        <div class="sourcelist">出典：★Amazon基本情報.doc（作成2019/4/23 小松、更新2020/6/11・2023/10/27 荒井）＋Web公開情報（2026年9月時点）</div>
       </article>
 
       <article class="doc" id="mall-rakuten">
@@ -868,7 +913,6 @@
             <tr><td>広告レポート</td><td>広告・アフィリエイト・楽天大学＞広告レポート＞検索連動型広告＞パフォーマンスレポート</td></tr>
           </tbody>
         </table>
-        <div class="sourcelist">出典：★楽天市場基本情報.doc（作成2023/10/30、更新2024/7/18 荒井）＋Web公開情報（2026年9月時点）</div>
       </article>
 
       <article class="doc" id="mall-yahoo">
@@ -923,7 +967,6 @@
           <div class="ctitle">⚠️ 社内フローでの注意</div>
           <p style="margin-bottom:0;">Yahoo!ショッピングの商品登録・編集はitemRobot経由で楽天市場と同時に行うため、単独の「Yahoo!商品登録マニュアル」は存在しません。手順は本マニュアルの3.3・3.4章（itemRobot）を参照してください。問い合わせ対応は6.1章を参照してください。</p>
         </div>
-        <div class="sourcelist">出典：Web公開情報（2026年9月時点）をもとに新規作成。既存業務フローは各種業務マニュアル記載のYahoo!関連手順を参照。</div>
       </article>
     </section>
 
@@ -946,7 +989,7 @@
         <p>格納先：<span class="path">共有データ ▶ ■商品部 ▶ 個人販売 ▶ 楽天 ▶ 一括アップロード ▶ 新商品アカウント ▶ 商品カテゴリ</span></p>
         <ol class="flowlist">
           <li>参考用CSV（<code>20yymm～_normal</code>）から、SKU管理番号・サイズ・カラーを入力用CSV（<code>20yymm～_boss</code>）へコピペ。</li>
-          <li><code>boss.csv</code>を開き、商品コード／FMS商品番号／原価／商品名（サイズ・カラー、カラーには001, 002…と連番）を入力。BFIVEの場合はZ列のFMSに<code>_normal</code>のIX列を転記（C列＝BFIVE大元の商品番号、IX列＝個人販売サイトの商品番号なので混同しない）。</li>
+          <li><code>boss.csv</code>を開き、商品コード／FMS商品番号／原価／商品名（サイズ・カラー、カラーには001, 002…と連番）を入力。BFIVEの場合はZ列のFMSに<code>_normal</code>のIX列を転記（C列＝BFIVE大元の商品番号、IX列＝パーソナルサイトの商品番号なので混同しない）。</li>
           <li>Amazonデータベース（<span class="path">■商品部 ▶ 個人販売 ▶ Amazon ▶ アマストリーム ▶ 集計</span>）からもコピペ可能な情報があるため活用する。</li>
         </ol>
 
@@ -985,7 +1028,6 @@
           <div class="ctitle">⚠️ ソックスなど「上野倉庫」区分の商品を含む場合</div>
           <p style="margin-bottom:0;">他商品との付帯買いでBOSSと連携させる場合、倉庫区分が【上野（倉庫）】のままだと読み取りエラーになります。【RSL】区分に変更してから【上野（倉庫）】側を削除してください（詳細は5.1章）。</p>
         </div>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（在庫登録／商品リリース準備／新商品発送シート）、★個人販売新商品在庫登録マニュアル.doc、個人販売マニュアル2024.xlsx・pdf を統合</div>
       </article>
 
       <article class="doc" id="item-fms">
@@ -993,7 +1035,7 @@
           <h3><span class="subnum">3.2</span>FMSへの商品登録</h3>
           <div class="docmeta"><span class="badge-mini new">担当者ヒアリングで追記</span></div>
         </div>
-        <p class="lede">商品ができるまでの流れ（1.2章）では「WEBチームに依頼」と案内していますが、実際に個人販売側で入力・確認する際のポイントとして、担当者への簡単なヒアリングをもとに以下を追記します。元マニュアル一式には入力手順そのものは記載がなかったため、より詳しい操作方法が必要な場合はWEBチームまたは荒井さんへ確認してください。</p>
+        <p class="lede">商品ができるまでの流れ（1.2章）では「WEBチームに依頼」と案内していますが、実際にパーソナル事業側で入力・確認する際のポイントとして、担当者への簡単なヒアリングをもとに以下を追記します。元マニュアル一式には入力手順そのものは記載がなかったため、より詳しい操作方法が必要な場合はWEBチームまたは荒井さんへ確認してください。</p>
         <ul>
           <li><strong>置き換え文字の設定</strong> — 商品名・価格・URLなど、テンプレート内の置き換え文字（プレースホルダー）を該当商品の情報に差し替える。年末年始のお知らせ（10.1章）のメール署名と同様、置き換え文字を一括変更できる仕組みを利用する。</li>
           <li><strong>説明文（HTML）</strong> — 商品説明文はHTMLタグ（<code>&lt;br&gt;</code>等）を使って入力する。itemRobotの楽天用商品説明文（3.4章）と考え方は同じで、改行・強調などの簡単なタグを使う。</li>
@@ -1003,7 +1045,6 @@
           <div class="ctitle">📁 確認事項</div>
           <p style="margin-bottom:0;">この3項目は担当者からのヒアリングメモをもとにした概要です。具体的な入力画面・操作手順（置き換え文字の指定方法、説明文の入力欄の場所など）は元マニュアルに記載がなく未確認のため、実際に作業する際は先輩・WEBチームに操作画面を見せてもらいながら進めることをおすすめします。手順が固まったらこの章に詳細を追記してください。</p>
         </div>
-        <div class="sourcelist">出典：担当者ヒアリングメモ（2026年9月）</div>
       </article>
 
       <article class="doc" id="item-amazon">
@@ -1052,7 +1093,6 @@
 
         <h4>エラーが出た場合</h4>
         <p>自分で対処できないエラーはAmazonへの電話が最も効率的です。セラーセントラル右上のヘルプ＞【商品登録】＞【その他の商品に関する問題】＞【アソシエイトへ連絡する】＞詳細情報入力＞電話番号入力で折り返しを受けられます（<span style="color:var(--red);">3階の電話でのみ対応可能</span>）。</p>
-        <div class="sourcelist">出典：★個人販売Amazon商品登録マニュアル.doc（初版2024/2/16 荒井、更新2026/3/5 木村）</div>
       </article>
 
       <article class="doc" id="item-itemrobot-new">
@@ -1093,7 +1133,6 @@
 
         <h4>エラー対応</h4>
         <p>itemRobotのサポートセンターへの電話が最も効率的です（電話番号はitemRobotトップページ下部。<strong>4Fから電話可能</strong>）。</p>
-        <div class="sourcelist">出典：★個人販売itemRobot商品登録マニュアル.doc（初版2024/2/16 荒井、更新2026/3/5 木村）</div>
       </article>
 
       <article class="doc" id="item-itemrobot-edit">
@@ -1107,7 +1146,6 @@
           <li>数分後、実際の本番環境（Web画面）でも表示を確認する（エラーが出ていなくても表示が崩れることがある）。</li>
         </ol>
         <div class="callout caution"><div class="ctitle">⚠️ 解決できない場合</div><p style="margin-bottom:0;">itemRobotマニュアルの「エラーが出た場合は」を確認し、それでも不明な場合は荒井さんに相談してください。</p></div>
-        <div class="sourcelist">出典：★個人販売itemRobot商品情報編集.doc（初版2024/7/23 荒井）</div>
       </article>
 
       <article class="doc" id="item-skuiko">
@@ -1133,16 +1171,15 @@
         <h4>BOSS 商品マッピング・在庫設定（第3章5と連動）</h4>
         <p>詳細な共通手順は3.8章を参照してください。SKU移行特有の注意点として、複数ページを1つにまとめる場合はモール商品ID（商品コード）を1つに統一し、使わなくなるページのモール商品IDは削除のみ対応します（例：13555（ブルー）に16555（レッド）を統合する場合、レッドのモール商品IDは13555に統一）。</p>
         <div class="callout caution"><div class="ctitle">⚠️ アップロード直後のエラー</div><p style="margin-bottom:0;">itemRobot反映直後はタイムラグでエラー（「商品情報の取得に失敗しました」）が出ることがあります。少し時間を置いて再チャレンジしてください。移行させて残った側のSKUを誤ってアップロードした場合も同様のエラーになるため見極めが必要です。</p></div>
-        <div class="sourcelist">出典：★個人販売SKU移行手順.doc（初版2024/10/21 荒井）</div>
       </article>
 
       <article class="doc" id="item-gtin">
         <div class="dochead"><h3><span class="subnum">3.7</span>GTIN（JAN）コード登録</h3></div>
         <p class="lede">GTINコードはJANコードと同義で、日本での呼称がJAN、世界共通の呼称がGTINです。13桁のうち左9桁が企業コード、続く3桁がアイテムコード（000〜999）、最後1桁がチェックデジットです。アイテムコードを使い切った場合は企業コードの末尾を変更します（変更には登録申請が必要）。1SKUごとに登録します。</p>
-        <p>格納先：<span class="path">■商品部 ▶ 製品管理 ▶ GTINコード</span>（GTINコード登録ログイン情報、一括登録フォーマット、個人販売登録済商品リストなどを格納）。作業順は①個人販売(登録済商品リスト)に入力 → ②一括JGTIコード登録フォーマットへコピペ → ③GS1へアップロード → ④FMSショップコード設定へ入力、です。</p>
+        <p>格納先：<span class="path">■商品部 ▶ 製品管理 ▶ GTINコード</span>（GTINコード登録ログイン情報、一括登録フォーマット、パーソナル事業登録済商品リストなどを格納）。作業順は①パーソナル事業(登録済商品リスト)に入力 → ②一括JGTIコード登録フォーマットへコピペ → ③GS1へアップロード → ④FMSショップコード設定へ入力、です。</p>
         <p>ログイン先：GS1 Japan Data Bank（<span class="path">https://mygs1.gs1jp.org/</span>）＞「GS1 Japan Data Bank－商品情報－」＞自社商品情報登録。ダッシュボードには「商品登録（1件ずつ）」「登録商品数（一覧確認）」「一括登録（複数、基本こちらを使用）」があります。</p>
 
-        <h4>個人販売(登録済商品リスト)への入力</h4>
+        <h4>パーソナル事業(登録済商品リスト)への入力</h4>
         <ul>
           <li>A列 登録日：申請日。番振りのみで申請しない場合は赤字で「登録まだ！」。</li>
           <li>B列 商品№：FMSの商品番号。</li>
@@ -1175,8 +1212,7 @@
         <p>1SKUのみの登録が必要な場合はダッシュボードの「商品登録」から直接入力も可能です（取扱品目コードは501：衣料・衣服・肌着、消費税率10%、原産国は中華人民共和国が基本／日本製の場合は日本を選択）。</p>
 
         <h4>FMSへのGTINコード入力</h4>
-        <p>FMS＞在庫管理＞該当アカウント・商品名で検索＞ショップコード設定＞ショップ名「GTIN」でコードを入力＞確認。BFIVEの場合、大元への入力で個人販売サイトの仮想在庫にも自動的に紐づくため、二重入力は不要です（確認する場合はアカウント切替「BFIVE個人販売サイト」＞商品一覧＞該当商品の「仮想」＞在庫数欄でGTINが入っているか確認）。</p>
-        <div class="sourcelist">出典：★個人販売GTINコード.doc（初版2025/3/31、更新2026/2/16 木村）</div>
+        <p>FMS＞在庫管理＞該当アカウント・商品名で検索＞ショップコード設定＞ショップ名「GTIN」でコードを入力＞確認。BFIVEの場合、大元への入力でパーソナルサイトの仮想在庫にも自動的に紐づくため、二重入力は不要です（確認する場合はアカウント切替「BFIVE個人販売サイト」＞商品一覧＞該当商品の「仮想」＞在庫数欄でGTINが入っているか確認）。</p>
       </article>
 
       <article class="doc" id="item-barcode">
@@ -1191,7 +1227,6 @@
           <li>保存先：<span class="path">■共通 ▶ 楽天 ▶ バーコード ▶ 各アカウント各商品フォルダ</span>（保存名はSKUコード＋サイズ）。保存後はレイアウトに戻り1ページ目のみ削除（2ページ目は残す）。</li>
         </ol>
         <p>印刷はモノクロ・倍率100%・余白は規定（デフォルト）でOK。印刷後は各アカウントの所定ファイルへ格納します。</p>
-        <div class="sourcelist">出典：★BOSS納品用 バーコード作成.doc（初版2021/5/14、更新2024/7/29 荒井）</div>
       </article>
 
       <article class="doc" id="item-mapping">
@@ -1226,7 +1261,6 @@
           <div class="ctitle">⚠️ 在庫はあるのに片方に反映されない場合</div>
           <p style="margin-bottom:0;">FMSに在庫があってBOSSにない（またはその逆）場合は、楽天とBOSSがマッピングされていない可能性があります。在庫管理方法が自動連動になっているか、モール商品コードにASINが入っているかを確認してください。自動連動になっているのに反映されない場合は、対象を全選択して「販売在庫を設定」で一度更新し、続けて全選択して「自動連動」で更新し直すと直ることがあります。</p>
         </div>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（在庫登録／完売商品の削除シート）、★個人販売新商品在庫登録マニュアル.doc 第4章、★個人販売SKU移行手順.doc 第5章 を統合</div>
       </article>
 
       <article class="doc" id="item-hpupdate">
@@ -1242,7 +1276,6 @@
         </ol>
         <h4>親SKUへの子SKU追加</h4>
         <p>アパレルサイズと色を入力し、それぞれ「add」を押下すると子SKU一覧の一番下に入力欄が表示されます。入力欄が出ない場合は一覧内でサイズが重複していないか確認してください（一度保存・終了してから追加の入力を行う）。すべての項目を入力しないと保存できません。在庫数はBOSSの在庫数を確認して入力します。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（HP詳細ページ更新（Amazon）／親SKUに子SKU追加（Amazon）シート）</div>
       </article>
     </section>
 
@@ -1277,7 +1310,6 @@
             <li>在庫管理の色分け：<strong>緑</strong>＝稼働しているが在庫なし／<strong>グレー</strong>＝稼働していない／<strong>白</strong>＝稼働している（在庫あり）。</li>
           </ul>
         </div>
-        <div class="sourcelist">出典：★個人販売在庫管理マニュアル.doc（初版2024/1/15 荒井）、memo兼マニュアル.xlsx（FMSシート）</div>
       </article>
 
       <article class="doc" id="stock-cost">
@@ -1298,7 +1330,6 @@
           </ul>
         </div>
         <p>終わったらデスクトップにCSVを保存し、<span class="path">BOSS＞商品・在庫＞CSV取込</span>でテンプレート「CSV取込テンプレート」を選択してファイル取込。処理結果が「成功」なら完了です。</p>
-        <div class="sourcelist">出典：★個人販売原価更新マニュアル.docx、memo兼マニュアル.xlsx（原価更新シート）を統合</div>
       </article>
 
       <article class="doc" id="stock-choki">
@@ -1326,7 +1357,6 @@
           <li>作業完了後、自動発注を再開（①のチェックを入れ直す）。完了確認はBOSSの「商品入荷のお知らせ」メール到着後、FMS＞在庫管理で1〜2商品を目視確認（10時半以降ならパートさんの在庫連携完了）。</li>
           <li>FMS＞自動タスク一覧＞「見積もり作成」で検索し、タスク№111の月〜金に☑を入れて保存。</li>
         </ol>
-        <div class="sourcelist">出典：★個人販売長期在庫の在庫選び.docx、memo兼マニュアル.xlsx（長期在庫の割振りシート）を統合</div>
       </article>
 
       <article class="doc" id="stock-kanbai">
@@ -1342,7 +1372,6 @@
           <div class="ctitle">⚠️ 在庫はあるのに片方にだけ表示される場合</div>
           <p style="margin-bottom:0;">FMSに在庫があってBOSSにない（またはその逆）場合は、楽天とBOSSのマッピング不整合の可能性があります。対応方法は3.8章の共通手順を参照してください。</p>
         </div>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（完売商品の削除シート）</div>
       </article>
 
       <article class="doc" id="stock-bossfms">
@@ -1352,7 +1381,6 @@
           <li><strong>FMSへアップロード</strong>：どのアカウントでもよいので在庫管理画面の【CSVデータ在庫反映】からファイルを選択しアップロード。完了すると一覧に表示（グレー＝在庫数反映済み）。エラー数がある場合は荒井さんへ報告。エラーがなければ【在庫数を反映する】をクリックし、反映完了でグレーになる。</li>
         </ol>
         <div class="callout caution"><div class="ctitle">⚠️ エラーの主な原因</div><p style="margin-bottom:0;">BOSSとFMSの両方にASIN情報が入力されていない（一致していない）ことが原因です。BOSS側の入力は荒井さん、FMS側のASIN情報はパートさんが担当しているため、漏れがないよう引き続き確認をお願いします。</p></div>
-        <div class="sourcelist">出典：★BOSS⇒FMS 在庫データアップロード手引き.doc（初版2022/6/7 荒井）</div>
       </article>
 
       <article class="doc" id="stock-nohin">
@@ -1368,7 +1396,7 @@
             <tr><td>RSLに発送</td><td>Amazon・楽天市場・Yahoo!・自社サイトのほとんどの商品はRSLで一括管理（原則こちら）</td></tr>
           </tbody>
         </table>
-        <p>新商品が上がってきた際は、まず「出人チームへ商品写真撮影依頼」「WEBチームへ商品登録依頼」「個人販売チームでAmazon・楽天・Yahoo!の登録」を行います。新商品のFBA発送時はLサイズのみ抜き取りデザインチームへ渡し（発送保留にし、Lサイズが戻り次第まとめて次の指示を待つ）ます。</p>
+        <p>新商品が上がってきた際は、まず「出人チームへ商品写真撮影依頼」「WEBチームへ商品登録依頼」「パーソナル事業チームでAmazon・楽天・Yahoo!の登録」を行います。新商品のFBA発送時はLサイズのみ抜き取りデザインチームへ渡し（発送保留にし、Lサイズが戻り次第まとめて次の指示を待つ）ます。</p>
 
         <h4>納品に必要なもの</h4>
         <p>納品商品／梱包ダンボール（何でも可）／各商品のSKUコードラベル／サイズシール／発送伝票／納品書／新規入荷予定データ。<strong>納品登録商品・納品書・箱の中身が異なる場合は発送不可</strong>。発送はヤマト運輸を使用します。</p>
@@ -1389,7 +1417,6 @@
           <li>小口が分かれる場合、親の伝票を貼った箱に「納品書在中」とマジックペンで記入し納品書を同梱。箱に貼られた無関係な伝票は剥がすかマジックペンで✕印を付ける（受け入れ不可の可能性があるため）。</li>
         </ol>
         <div class="callout ref"><div class="ctitle">👤 担当者について（担当者ヒアリングで追記）</div><p style="margin-bottom:0;">新商品登録フロー（<a href="#item-flow">3.1章</a>）の最終ステップである「入荷リストのBOSSアップロード」は、木川さんが担当しています。この工程について不明点がある場合は木川さんに確認してください。</p></div>
-        <div class="sourcelist">出典：★BOSS納品方法.doc（初版2021/5/14、更新2024/7/29 荒井）／担当者ヒアリングメモ（2026年9月）</div>
       </article>
 
       <article class="doc" id="stock-release">
@@ -1406,7 +1433,6 @@
           <li>BOSS＞入荷＞入荷予定一覧（右上の「新規入荷予定登録」）で登録：入荷予定日は翌日、配送伝票番号は不明のため空欄、PO番号はRSLからのメッセージ件名（通常分と区別できるように）、商品はASINから商品在庫タブで検索してSKUコードを入力、期限日はなし、備考にASINを入力。</li>
           <li>登録すると予定番号が発行されるので、メール内の管理リストの「入荷管理番号（追加分）」に入力し、該当番号に☑を入れて一括入力する。</li>
         </ol>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（RSLからの連絡対応(入荷QA)シート）</div>
       </article>
     </section>
 
@@ -1463,7 +1489,7 @@
         </ol>
         <div class="callout ref">
           <div class="ctitle">📁 メールテンプレート格納先</div>
-          <p style="margin-bottom:0;"><span class="path">■商品部 ▶ 個人販売 ▶ ◆ユーザー対応</span>「FMS確定テンプレート」。個人販売サイトの注文は個人販売仕様のメールのためそのまま使用可（チームオーダー仕様のメールは別テンプレート使用）。</p>
+          <p style="margin-bottom:0;"><span class="path">■商品部 ▶ 個人販売 ▶ ◆ユーザー対応</span>「FMS確定テンプレート」。パーソナルサイトの注文はパーソナル仕様のメールのためそのまま使用可（チームオーダー仕様のメールは別テンプレート使用）。</p>
         </div>
 
         <h5 style="font-size:13.5px;font-weight:700;margin:14px 0 6px;">イレギュラー：FMSで購入商品に修正を加えるとき</h5>
@@ -1496,7 +1522,7 @@
           <tbody>
             <tr><td>RSL在庫と上野在庫の両方を注文</td><td>上野→BOSS→同梱で発送（日本郵便）</td></tr>
             <tr><td>振込払い（上野在庫のみ）</td><td>上野→客先（ヤマト）。FMS送料がゆうパック料金のままでもOK、その旨メールで伝える</td></tr>
-            <tr><td>代引き（上野在庫のみ、イレギュラー）</td><td>上野→BOSS→発送（代引き手数料が個人販売・チームオーダーで異なりお客様不利益になるため）</td></tr>
+            <tr><td>代引き（上野在庫のみ、イレギュラー）</td><td>上野→BOSS→発送（代引き手数料がパーソナル事業・チームオーダーで異なりお客様不利益になるため）</td></tr>
           </tbody>
         </table>
         <p>上野在庫は商品センターのパートさんへ依頼：①在庫確認と発送準備を依頼（振込以外は即日発送）②確認が取れたら確定メール送信（振込の場合は発送保留・メモ確認ラベル付与、同梱／代引きの場合はFMS情報をBOSSへ取込み発送保留タグ削除）③発送対応・発送メール送信を依頼④期日情報の発送日／工程の発送は後日入力。</p>
@@ -1505,28 +1531,24 @@
         <p>送信するメールの種類：①注文内容ご確認メール ②注文確定メール ③キャンセルメール ④注文内容ご確認のお願い（欠品時） ⑤返信催促 ⑥問い合わせ回答メール（注文前の回答は顧客連絡用、見積更新・データ添付はFMSから送信）。</p>
         <p>メールがエラーになる場合は、迷惑メール振り分け（特にキャリアメール・iCloud）を確認。別メールがあれば新しいアドレスで再送、システムメールのエラーは顧客連絡用アドレスで送信します。キャンセル連絡を受けた場合は理由を確認しメモに記録、キャンセルメール送信時はステータスを「取り消し」にします。</p>
 
-        <h4>自社サイト・個人販売サイトでの問い合わせ（第4章）</h4>
+        <h4>自社サイト・パーソナルサイトでの問い合わせ（第4章）</h4>
         <p>顧客対応チームからチャットで対応依頼が入ります。<span class="path">FMS＞問い合わせ管理システム＞問い合わせ一覧</span>で氏名・アドレス・キーワード（内容の一部や見積番号）で検索します。返信後はAmazonの出品メモと同様に【顧客履歴】に記録を残します（購入前は氏名検索、購入後は見積番号から記録）。先方から返信が来る可能性がある場合は問い合わせページを開いたまま確認するとよいでしょう。</p>
-        <div class="sourcelist">出典：★個人販売注文処理マニュアル.doc（初版2022/9/9 荒井、更新2023/12/10 荒井、2025/5/1・2026/2/13 木村）</div>
       </article>
 
       <article class="doc" id="order-daibiki">
         <div class="dochead"><h3><span class="subnum">5.2</span>代引決済期日管理</h3></div>
         <p>毎月15日・月末にRMSへ代引きの清算書がアップされます。ダウンロードして格納先（<span class="path">■総務 ▶ 経理 ▶ 個人向販売 ▶ ◆BOSS代引き清算書</span>）へ保存します。月1回チケットが発行されるタイミングで、溜まっているPDFとExcel（前回ダウンロード分〜直近分）をまとめてダウンロードします。取得先：<span class="path">RMS＞店舗様向け情報・サービス＞7 物流支援サービス＞請求金額照会</span>。このデータをもとに社員がFMSへ入金入力を行います。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（代引決済期日管理シート）</div>
       </article>
 
       <article class="doc" id="order-batting">
         <div class="dochead"><h3><span class="subnum">5.3</span>注文バッティング対応</h3></div>
         <p>BOSSの受注一覧でステータス「確認済」をチェックする際、左側に赤丸マークが付いているものは未引当です。詳細ページで商品を確認し、SKUコードを受注一覧で検索すると同一SKUの購入履歴一覧が確認できます。注文日時のタイミングや、同一人物が複数モールで購入しているのか別人なのかを確認してください。未引当のものはお客様へメール送信後にキャンセル処理し、BOSSも注文キャンセルします。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（お問い合わせ対応シート）</div>
       </article>
 
       <article class="doc" id="order-mitsumori">
         <div class="dochead"><h3><span class="subnum">5.4</span>見積の新規作成（追加製造・発注）</h3></div>
-        <p>個人販売のお客様から稀に追加製造の依頼が入ります。FMSで新規見積もりを作成する場合、複製時と同様にお客様情報を入力し、配送方法はヤマト（1万円以上は送料無料）、支払方法はいったん仮のものを入れて後ほどお客様に確認します。商品タブで登録後、ステータスは「無料」から開始：<strong>無料</strong>＝お客様から聞いた内容でよいか確認いただく（メール送信時にステータスを「未処理」にすると管理しやすい）→<strong>未処理</strong>＝確認OKの返事が届いたら銀行振込の場合は振込先を連絡しステータスを「確定」に→<strong>確定</strong>（銀行振込は入金確認後に製造開始、製造開始から約1か月で商品が上がる）。やり取りはメモ欄に残し、ラベルは「メモ確認のみ」、メモに「入金があったら木村までチャット」と記載します。</p>
+        <p>パーソナル事業のお客様から稀に追加製造の依頼が入ります。FMSで新規見積もりを作成する場合、複製時と同様にお客様情報を入力し、配送方法はヤマト（1万円以上は送料無料）、支払方法はいったん仮のものを入れて後ほどお客様に確認します。商品タブで登録後、ステータスは「無料」から開始：<strong>無料</strong>＝お客様から聞いた内容でよいか確認いただく（メール送信時にステータスを「未処理」にすると管理しやすい）→<strong>未処理</strong>＝確認OKの返事が届いたら銀行振込の場合は振込先を連絡しステータスを「確定」に→<strong>確定</strong>（銀行振込は入金確認後に製造開始、製造開始から約1か月で商品が上がる）。やり取りはメモ欄に残し、ラベルは「メモ確認のみ」、メモに「入金があったら木村までチャット」と記載します。</p>
         <p>自動生成とは別に発注が必要な商品は、該当ASINで検索し直近の製造見積もりを複製します（基本情報から複製、名前は「個人販売　フラスコ」、担当者は木村、部署はそのまま）。商品タブで必要枚数を入力し、自動生成に引っかからないようASIN・SKUと在庫品自動発注テーブルの販売用SKU〜ASINを削除します。状況タブのラベルは「販売管理費」、発送注意欄にパートさん向けメモを残し、お客様の見積もりにも発注見積もりの番号をメモします。入金があったら発注側の見積もりを確定にし、確定日・入金日を入力します。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（見積新規作成シート）</div>
       </article>
     </section>
 
@@ -1561,12 +1583,11 @@
 
         <h4>Amazonキャンセル対応</h4>
         <p>出荷依頼停止の指示後、BOSSの出荷キャンセルとAmazonセラーセントラルの注文キャンセルを行います（出荷依頼停止以降はどちらが先でも可）。翌日以降の依頼で通常キャンセルができない場合、BOSSはRSLへ連絡（件名に「出荷依頼番号○○○○」を追記、出荷依頼番号はBOSS受注の詳細ページの出荷情報で確認）。Amazon側はセラーセントラルからお客様へ連絡し、メールはExcelテンプレートから配送方法に合わせて選んで修正・送信（メッセージ送信は基本「その他」を使用。返金の場合はAmazon既定のテンプレートしか使用できない仕様）。対応後は出品者メモに、何が起きてどう対応し現状はどうなっているかを分かりやすく記録します。</p>
-        <p><strong>対応するもの</strong>：注文キャンセルリクエスト、[BOSS]出荷不可の通知、[BOSS]返品のお知らせ、出荷通知・集荷の手配遅延の通知（BOSS上で進捗確認、出荷作業中なら問題なし。Amazonは2日程度での発送を周知しているがBOSSの出荷は2〜3日のため通知が来ることがある）。<strong>対応しないもの</strong>：返品対応（製品管理が担当。個人販売は楽天・Yahoo!・自社サイトの返品を対応）、送金手続き関連（経理担当）、ソフトウェア認証期限切れ通知。</p>
+        <p><strong>対応するもの</strong>：注文キャンセルリクエスト、[BOSS]出荷不可の通知、[BOSS]返品のお知らせ、出荷通知・集荷の手配遅延の通知（BOSS上で進捗確認、出荷作業中なら問題なし。Amazonは2日程度での発送を周知しているがBOSSの出荷は2〜3日のため通知が来ることがある）。<strong>対応しないもの</strong>：返品対応（製品管理が担当。パーソナル事業は楽天・Yahoo!・自社サイトの返品を対応）、送金手続き関連（経理担当）、ソフトウェア認証期限切れ通知。</p>
         <p>発送前キャンセルは「取り下げ依頼→不可の場合はRSLへ出荷キャンセル依頼→それも不可ならお客様へ受取拒否の対応をお願い」の順で対応。長期不在によるキャンセルは「対応種類まとめ＞商品未受け取り（Amazon）」を参照。商品の一部未着時は①送り先（上野／BOSS）確認②未着物をお客様に確認③BOSSの出荷情報（出荷実績情報）で配送方法・伝票番号を確認（日本郵便は追跡番号でHP確認）④お詫びと現状を返信、の順です。</p>
 
         <h4>楽天・Yahoo!の問い合わせ</h4>
         <p>楽天はお客様からのチャットに対し在庫確認（上記の方法）→返品（不良箇所の写真を送ってもらい着払いで返送）またはサイズ交換の対応を行います。Yahoo!はストアクリエイターPro＞問い合わせ管理＞通常のやりとりから本文クリックで返信し、メモに出品メモを残します。いずれも大量購入（FMSの上限数以上）の場合はお断りし、チームオーダーをおすすめして公式サイトへ誘導します。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（お問い合わせ対応／問い合わせ（Amazon・楽天・yahoo）シート）を統合</div>
       </article>
 
       <article class="doc" id="cs-henpin">
@@ -1580,7 +1601,6 @@
           <li>商品が届いたら、返品到着を待たずに差し替え商品の発送指示を出してよい。</li>
         </ol>
         <p>在庫が大量購入（FMSの上限数以上）で確保できない場合はお断りし、チームオーダーをおすすめします。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（問い合わせ（楽天）シート）</div>
       </article>
 
       <article class="doc" id="cs-amzclaim">
@@ -1593,7 +1613,6 @@
           <li>担当パートさん（不在時は木川さん）へ、再発送とお詫び状同封を依頼（パートさんは不慣れなため、送付方法・同梱物・入力箇所を具体的に指示する）。<strong>宅配便で発送</strong>（メール便は到着が遅れるため）。送り状番号も確認。</li>
           <li>テンプレート（<span class="path">■商品部 ▶ 個人販売 ▶ ●ユーザー対応 ▶ 問い合わせテンプレ(amazon)</span>）を使い、送り状番号が分かり次第メール返信。<span style="color:var(--red);">パッケージ1の送り状番号は上書きしない（上書きすると出荷日も変わり遅延発送扱いになる）。</span>送り状番号は出品者メモへパートさんに入力してもらう。</li>
         </ol>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（Amazonクレーム対応シート）</div>
       </article>
 
       <article class="doc" id="cs-socks">
@@ -1604,31 +1623,26 @@
           <li>送付いただいた写真（穴の開いた箇所・保証書）を添付。保証書の写真がなければ自分で撮影する。</li>
           <li>荒井さんへメール・見積もりのチェックを依頼し、確定メールを送信してステータスを確定にする。入金日・発送日（工程も）を入力する。</li>
         </ol>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（パワーシールドソックス交換対応／要望・クレームシート）</div>
       </article>
 
       <article class="doc" id="cs-owabi">
         <div class="dochead"><h3><span class="subnum">6.5</span>お詫び状</h3></div>
         <p>格納先：<span class="path">■商品部 ▶ 商品センター ▶ お詫び状</span>。発生案件のアカウントを選択して使用します。顧客担当が使用するファイルのため<strong>上書き保存はNG</strong>（心配な場合はローカルに保存してから編集）。電話番号・ファックス番号は削除し、メールアドレスはその時にやり取りしているアドレスを記載（個人のアドレスは記載しない）。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（おわび状の格納先シート）</div>
       </article>
 
       <article class="doc" id="cs-youbo">
         <div class="dochead"><h3><span class="subnum">6.6</span>要望・クレームの記録</h3></div>
         <p>スプレッドシート「要望・クレーム」のシート「個人販売返品理由登録」に、問い合わせで発生した返品・交換・クレームを記録します。入力タイミングは対応終了後でよく、発生日は最初に問い合わせが来た日、意見欄には気づいた事象を記載します。シート「チームオーダー要望・クレーム」は荒井さんからの指示があった時のみ対応（通常はノータッチ）。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（要望・クレームシート）</div>
       </article>
 
       <article class="doc" id="cs-henkin">
         <div class="dochead"><h3><span class="subnum">6.7</span>商品返金（振込）対応</h3></div>
         <p>FMSで商品を削除してから再確定し、大平さんへ振込を依頼します。再確定の際にお客様へメールを送信します（金額変更に伴い送料が発生した場合は支払情報の配送方法を「送料無料」に変更）。メールタイプは「見積・確定」を選択します（支払情報の金額を変更するため）。依頼は大平さんの個人チャットではなく、<strong>総務⇔商品部のグループチャット</strong>に送ります。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（商品返金（振込）シート）</div>
       </article>
 
       <article class="doc" id="cs-ryoshusho">
         <div class="dochead"><h3><span class="subnum">6.8</span>領収書データ発行（楽天）</h3></div>
         <p>お客様から依頼メールが届いたタイミングで対応します。格納先：<span class="path">■総務 ▶ 経理 ▶ 個人向販売 ▶ 楽天市場 ▶ ◆領収書請求書控えデータ</span>。ダウンロード時は毎回パスワードを求められます（<span class="path">■商品部 ▶ 個人販売 ▶ 楽天 ▶ 楽天ログイン</span>で確認）。更新時はファイル名が同一のため上書き保存してよいです。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（領収書データ発行（楽天）シート）</div>
       </article>
     </section>
 
@@ -1654,13 +1668,11 @@
         <h4>ネガティブキーワードの登録（共通キャンペーン）</h4>
         <p>【共通】キャンペーンのグループごとに「ネガティブターゲティング」で他アカウントのスポーツ関連語を除外します（類似商品を作っている場合、アカウントが違っても競合として入札額を引き上げてしまうため）。例：【共通】BFIVE 昇華長袖プラクティスストレッチシャツ（バスケ）は、【共通】PixoAleiro（サッカー）に関わるキーワード「サッカー フットサル フットボール ピクサレイロ pixoaleiro」等をフレーズ一致で除外します。</p>
         <p>キャンペーン作成後はスプレッドシート「Amazon更新履歴」に記録し、商品数が正しく反映されているか確認、週末にキャンペーンの動向をチェックします。</p>
-        <div class="sourcelist">出典：★個人販売Amazon広告管理マニュアル.doc（初版2024/9/18 荒井、更新2026/3/4 木村）</div>
       </article>
 
       <article class="doc" id="ad-amzkeyword">
         <div class="dochead"><h3><span class="subnum">7.2</span>Amazon広告 検索キーワードメンテナンス</h3></div>
         <p>キャンペーンマネージャーで、期日を先々月〜先月に絞り、広告費を昇順に表示（売上が立っているものだけでOK。広告グループはグレーバー含め売上があるもの）。広告グループ内の検索用語は期間をさかのぼれる限り遡り、クリック数を昇順に、表示件数を最大にして確認します。<strong>削除対象</strong>はクリックが多く売上につながらないキーワードで、メモに記録してまとめて削除します。削除方法はキャンペーン（1階層）に戻り「除外キーワード」をクリック（除外キーワードがない場合はネガティブターゲティングに登録することもある。入力時にエラーが出ても無視してよい）。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（Amazon検索キーワードメンテナンスシート）</div>
       </article>
 
       <article class="doc" id="ad-coupon">
@@ -1677,7 +1689,6 @@
           <div class="ctitle">⚠️ 変倍設定の制約</div>
           <p style="margin-bottom:0;">開始時刻の直前まで変倍情報は変更できますが、変倍期間中は変更不可です。更新できない変倍情報を中止したい場合は商品を倉庫に入れるか削除してください。100円未満の商品には変倍設定ができません。</p>
         </div>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（クーポン＆ポイント変倍（楽天）シート）</div>
       </article>
 
       <article class="doc" id="ad-supersale">
@@ -1688,19 +1699,16 @@
         <p>itemRobotでコピーページの商品情報を編集します。①商品名の先頭に「【楽天スーパーSALE20％OFF】」を追加（【ポイント3倍】は削除）②スマホ/PC説明文に「楽天スーパーSALE」の検索キーワードを追加（各アカウントの英語・カタカナ表記が抜けていれば追加）③「▼セットアップアイテム▼」内のURLをスーパーSALEのコピーページ用に変更。①②はitemRobot商品管理＞検索ページ（ブランド別／スーパーSALE商品（コピーページ）に☑、表示件数500件）で検索し一覧を全選択→一括編集（処理対象はメインデータ）。置換は<span class="kbd">Ctrl+F</span>で該当箇所を確認・修正してから一括置換します。更新後はRMS＞商品管理＞一覧で管理番号を検索してチェック（倉庫指定が「販売中」のものは「倉庫」指定へ修正）。</p>
         <h4>在庫設定</h4>
         <p>申請が通った商品（RMS＞1.商品管理＞3.イベント申請〜で確認）をBOSSで在庫設定します。RMS商品マッピング登録・商品マッピング・在庫設定用CSV（<span class="path">■商品部 ▶ 個人販売 ▶ 楽天 ▶ 一括アップロード ▶ 楽天SS_boss.csv</span>）を<span class="path">BOSS＞商品・在庫＞商品マッピング・在庫設定（CSV取込）</span>で一括アップロードします。完売表示になっている商品は在庫管理方法を一度「0」に設定してアップロード→「1」に戻して再アップロードすると全体を更新できます（完了後15分程度おいて在庫が戻っているか確認）。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（楽天スーパーセールシート）</div>
       </article>
 
       <article class="doc" id="ad-promo">
         <div class="dochead"><h3><span class="subnum">7.5</span>Amazonプロモーション割の複製</h3></div>
         <p>まとめ買いプロモーションの複製作業です。<span class="path">広告＞プロモーション＞プロモーションを管理</span>（<span class="path">https://sellercentral.amazon.co.jp/promotions/manage</span>）からプロモーショントラッキングIDを選択し「このプロモーションを複製」（別タブで開くのがおすすめ）。購入商品のASINリストはAmazonデータベースから【各アカウント・出品中・子商品】で検索して取得します（BF永久交換保証ソックスは対象外。基本は新商品も含めすべて対象）。実施時期は現行割引が終わる翌日00:01〜180日以内で設定します。タイトルは複製元を流用し、手を加えるのは対象商品と実施時期のみです。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（Amazonプロモーション割の複製シート）</div>
       </article>
 
       <article class="doc" id="ad-lp">
         <div class="dochead"><h3><span class="subnum">7.6</span>LP作成方法（楽天）</h3></div>
         <p>ランディングページ（アウトレットのコンテンツページも同様）の作成手順です。写真デザインはデザインチームに依頼し、ページ構成は自分で行います。作成してもらった画像は楽天トップページのスライダーバナーに追加します。画像は通常どおりRMSの画像管理（今回は基本フォルダ）にアップロードし、<span class="path">RMS＞店舗設定＞トップページ設定＞ページ一覧＞トップ1の【編集】</span>から最上部のスライダーバナーに画像を追加します。リンク先には該当する商品ページのURLを設定します。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（LP作成方法（楽天）シート）</div>
       </article>
     </section>
 
@@ -1753,13 +1761,11 @@
 
         <h4>⑤ キャンペーン集計</h4>
         <p>③で保存したデータを参照し、Amazonキャンペーン集計Excelに商品ごとの前月データを入力します。</p>
-        <div class="sourcelist">出典：Amazon採算表作成方法.docx、月初レポート保存（Amazon）.docx を統合</div>
       </article>
 
       <article class="doc" id="rep-kaigi">
         <div class="dochead"><h3><span class="subnum">8.2</span>Amazon会議資料作成メモ</h3></div>
         <p>採算表の作成に加えて会議資料を作る際の補足メモです。D列を追加し注文番号＆SKUの値を入れて値で保存、税金を除いて振り分けます。月額登録料・FBA保管手数料は税抜計算にして振り分け（合計は計算しない。SUMIFに影響が出るため）。製版代登録・原価登録はいつも通り行い、商品番号・注文番号順に並び替えます。原価合計の横に、販売手数料・出荷作業手数料・配送料・代引き手数料（0は空白に）・その他損益をSUMIF関数ですべてマイナスで計算して持ってきます。マケプレ配送料は手入力です（注文番号の重複・数量2以上を強調表示させて入力漏れを防止。既に数字が入っている場合はそこから送料を差し引く）。</p>
-        <div class="sourcelist">出典：Amazon会議資料作成メモ.txt</div>
       </article>
 
       <article class="doc" id="rep-monthly">
@@ -1775,7 +1781,6 @@
         <p>同メニューの日次レポート「在庫エイジングレポート」最新日付分をダウンロード。1〜3行目削除、B列・C列間に「ブランド」「カテゴリ」「FMS」「メーカーサイズ」列を挿入。①で使用したBOSS商品在庫CSVを元にASINでVLOOKUP（エラーはそのまま放置でOK、荒井さんが後で確認）。<span style="color:var(--red);">ASIN列の末尾に半角スペースがあるため注意（<code>=LEFT</code>関数で除去）。</span>値でコピーし直して同フォルダに保存（ファイル名は当日中でなくても「○○01」で登録可）。</p>
         <h4>③ 採算表への反映</h4>
         <p>①で算出した「在庫金額」を、全体・各アカウント毎に「◆個人販売採算表」のAP列（<span class="path">■商品部 ▶ 個人販売 ▶ ◇目標・売上</span>）へ入力します。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（各種レポート保存（楽天）シート）</div>
       </article>
 
       <article class="doc" id="rep-database">
@@ -1785,7 +1790,6 @@
         <p>ASINコード（アップロード完了後に発行。並び替え「作成日：新しい順」または「最終更新日」で検索しやすい）、SKU（アップロードExcelから値貼り）、商品カテゴリー（チケット記載）、商品名・カラー/デザイン（Excelからコピペ）、商品写真URL（1枚目）、配送方法（商品が入るサイズで選択）、初回見積もり番号（指示書の見積もりNo）を入力します。親商品を登録した場合はデータベースにも親商品を入力（G列以降は空欄）。<span style="color:var(--red);">ASINコピー時はカラー・サイズのズレ、余分な空白に注意（ダブルクリックで選択してからペースト）。</span></p>
         <h4>Amazon広告キャンペーン集計（月初にインポート）</h4>
         <p>広告キャンペーンマネージャーで単月ごとの集計をExcelへ入力します（参照元：<span class="path">■商品部 ▶ 個人販売 ▶ Amazon ▶ 月次別データ ▶ キャンペーン</span>、保存先：<span class="path">■商品部 ▶ 個人販売 ▶ Amazon ▶ 各種データ ▶ Amazonキャンペーン集計.Excel</span>）。桁区切りが必要な列：D列（インプレッション数）、G列（広告費）、J列（売上）。キャンペーン名は、広告＞広告キャンペーンマネージャーでASINからAmazonデータベースを検索し、商品カテゴリと広告グループ名称を統一。変更後はキャンペーン集計Excelのシート名も揃えます。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（Amazonデータベースへの入力／Amazon広告キャンペーン集計シート）を統合</div>
       </article>
     </section>
 
@@ -1805,7 +1809,6 @@
         <h4>④ Xの投稿準備</h4>
         <p>左メニュー「ポストする」＞スケジュールマークで日時設定＞「確認する」。<strong>Xは140字以内（ハッシュタグ含む）</strong>の文字数制限があるため文章を調整します。画像は左下のメディアから追加し「ポストする」で完了です。</p>
         <p>他にも投稿するアカウントがあれば同じ手順を繰り返します。</p>
-        <div class="sourcelist">出典：★個人販売SNS投稿マニュアル.doc（初版2024/2/8 荒井）</div>
       </article>
     </section>
 
@@ -1825,13 +1828,11 @@
             <tr><td>自社サイトのメール</td><td>アカウント情報の変更（置き換え文字）で複数署名を一括変更可能</td></tr>
           </tbody>
         </table>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（年末年始のお知らせシート）</div>
       </article>
 
       <article class="doc" id="irr-doukon">
         <div class="dochead"><h3><span class="subnum">10.2</span>チームオーダー商品との同梱</h3></div>
-        <p>見積もりが分かれている場合はグループを作成します（パートさんの検品がしやすくなるため）。同梱か請求が発生する場合は「同梱」にします。金額が大きいチームオーダー側を親グループ、個人販売側を子グループにします（チームオーダー見積もりで親グループを作成→個人販売見積もりで子グループとして親を追加）。BOSSからの返送は入金前でも問題ありません。本来はチームオーダー見積もりの商品タブに個販商品をまとめて追加しますが、注文日が異なると見積もりが分かれてしまうため、その場合はグループ作成で対応します。</p>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（チームオーダー商品との同梱シート）</div>
+        <p>見積もりが分かれている場合はグループを作成します（パートさんの検品がしやすくなるため）。同梱か請求が発生する場合は「同梱」にします。金額が大きいチームオーダー側を親グループ、パーソナル事業側を子グループにします（チームオーダー見積もりで親グループを作成→パーソナル事業見積もりで子グループとして親を追加）。BOSSからの返送は入金前でも問題ありません。本来はチームオーダー見積もりの商品タブに個販商品をまとめて追加しますが、注文日が異なると見積もりが分かれてしまうため、その場合はグループ作成で対応します。</p>
       </article>
     </section>
 
@@ -1849,7 +1850,6 @@
             <tr><td>火・金</td><td><strong>発送日入力</strong>：販売管理費を入れていない社販の見積もりは自動集計に出てこないため、社販があった場合はメモに控える。</td></tr>
           </tbody>
         </table>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（FMSでのルーティンシート）</div>
       </article>
 
       <article class="doc" id="rt-kubun">
@@ -1871,7 +1871,6 @@
             <tr><td>カタログ校正</td><td>広報・ブランディング</td></tr>
           </tbody>
         </table>
-        <div class="sourcelist">出典：memo兼マニュアル.xlsx（工数詳細シート）</div>
       </article>
     </section>
 
@@ -1903,7 +1902,6 @@
             <tr><td>本統合マニュアル</td><td colspan="2">2026年9月 統合・Web情報アップデート</td></tr>
           </tbody>
         </table>
-        <div class="sourcelist">出典：木村業務の洗い出し.txt、各マニュアル文末の更新履歴欄</div>
       </article>
 
       <article class="doc" id="hist-todo">
@@ -1932,7 +1930,6 @@
           <div class="ctitle">📁 手動対象商品の在庫補充フロー（メモのみ・要マニュアル化）</div>
           <p style="margin-bottom:0;">日本業者（オリスタ・マスダソックス・イレブンスポーツプランニング・UNITEN圧着・圧着WDBK）は自動在庫補充の対象外で、手動での在庫補充が必要です：①【適正在庫通知】メール受信②在庫管理NoのURLを開き補充サイズ・枚数確認③Amazon(ASIN)コードをFMS見積一覧のオプション値/選択肢に入力し追加履歴を検索④最近の見積もりを複製し新しい見積もりを作成⑤商品タブでサイズごとの補足枚数を手入力⑥見積更新後、工程追加・原価をメンテナンス⑦発注書を新規作成し初回発注履歴と照合⑧発注、通知スターを消して終了。自動在庫補充（福客）・返金処理・毎月原価調整の各シートは項目名のみで詳細未記載のため、別途マニュアル化が必要です。</p>
         </div>
-        <div class="sourcelist">出典：木村業務の洗い出し.txt、個人販売マニュアル2024.xlsx（手動在庫補充手順シート）</div>
       </article>
     </section>
 
@@ -1953,8 +1950,55 @@
   var docs = Array.prototype.slice.call(document.querySelectorAll('article.doc'));
   var tocLis = Array.prototype.slice.call(document.querySelectorAll('nav.toc li'));
 
+  // search-hit highlighting helpers
+  function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function clearHighlights(root){
+    Array.prototype.slice.call(root.querySelectorAll('mark.search-hit')).forEach(function(m){
+      var parent = m.parentNode;
+      if(!parent) return;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+  }
+  function highlightText(root, q){
+    if(!q) return;
+    var re = new RegExp(escapeRegExp(q), 'gi');
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node){
+        if(!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        var tag = node.parentNode && node.parentNode.tagName;
+        if(tag === 'SCRIPT' || tag === 'STYLE' || tag === 'MARK') return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [];
+    var n;
+    while((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function(node){
+      var text = node.nodeValue;
+      re.lastIndex = 0;
+      if(!re.test(text)) return;
+      re.lastIndex = 0;
+      var frag = document.createDocumentFragment();
+      var lastIndex = 0;
+      var match;
+      while((match = re.exec(text))){
+        if(match.index > lastIndex) frag.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+        var mark = document.createElement('mark');
+        mark.className = 'search-hit';
+        mark.textContent = match[0];
+        frag.appendChild(mark);
+        lastIndex = match.index + match[0].length;
+        if(match[0].length === 0) re.lastIndex++;
+      }
+      if(lastIndex < text.length) frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
   searchInput.addEventListener('input', function(){
     var q = this.value.trim().toLowerCase();
+    clearHighlights(document.getElementById('mainContent'));
     if(!q){
       docs.forEach(function(d){ d.style.display=''; });
       document.querySelectorAll('.catgroup').forEach(function(g){ g.style.display=''; });
@@ -1965,6 +2009,7 @@
     docs.forEach(function(d){
       var hit = d.innerText.toLowerCase().indexOf(q) !== -1;
       d.style.display = hit ? '' : 'none';
+      if(hit) highlightText(d, q);
     });
     document.querySelectorAll('.catgroup').forEach(function(g){
       var anyVisible = Array.prototype.slice.call(g.querySelectorAll('article.doc')).some(function(d){ return d.style.display !== 'none'; });
@@ -1998,6 +2043,64 @@
   }
   window.addEventListener('hashchange', openForHash);
   openForHash();
+
+  // mobile sidebar drawer
+  var navToggle = document.getElementById('navToggle');
+  function setNavOpen(open){
+    document.body.classList.toggle('nav-open', open);
+    navToggle.textContent = open ? '✕' : '☰';
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  }
+  navToggle.addEventListener('click', function(){
+    setNavOpen(!document.body.classList.contains('nav-open'));
+  });
+  document.querySelector('nav.toc').addEventListener('click', function(e){
+    if(e.target.closest('a') && window.matchMedia('(max-width:900px)').matches){
+      setNavOpen(false);
+    }
+  });
+
+  // per-article "copy link" button
+  var copyLabel = '🔗 リンクをコピー';
+  var copyDoneLabel = '✓ コピーしました';
+  Array.prototype.slice.call(document.querySelectorAll('article.doc[id]')).forEach(function(article){
+    var head = article.querySelector('.dochead');
+    if(!head) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copylink-btn';
+    btn.textContent = copyLabel;
+    btn.addEventListener('click', function(){
+      var url = location.origin + location.pathname + '#' + article.id;
+      var done = function(){
+        btn.textContent = copyDoneLabel;
+        btn.classList.add('copied');
+        setTimeout(function(){
+          btn.textContent = copyLabel;
+          btn.classList.remove('copied');
+        }, 1500);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(done).catch(function(){
+          fallbackCopy(url, done);
+        });
+      } else {
+        fallbackCopy(url, done);
+      }
+    });
+    head.appendChild(btn);
+  });
+  function fallbackCopy(text, done){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); done(); }catch(e){}
+    document.body.removeChild(ta);
+  }
 })();
 </script>
 </body>
