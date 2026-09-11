@@ -4,93 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2323406b'/%3E%3Ctext x='32' y='45' font-family='Arial, sans-serif' font-size='34' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232B4C7E'/%3E%3Ctext x='32' y='45' font-family='Arial, sans-serif' font-size='34' font-weight='900' fill='%23ffffff' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
 <title>フラスコ100cc パーソナル事業 業務マニュアル</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
   :root{
-    --bg:#f7f5f0;
-    --surface:#ffffff;
-    --surface-2:#efece2;
-    --ink:#201f1c;
-    --ink-soft:#666358;
-    --ink-faint:#93907f;
-    --border:#e2ddcd;
-    --border-strong:#cfc8b2;
-    --accent:#23406b;
-    --accent-ink:#ffffff;
-    --accent-soft:#e7edf5;
-    --accent-soft-ink:#23406b;
-    --amber:#8f5f14;
-    --amber-soft:#f7ecd6;
-    --amber-line:#dcbb7c;
-    --red:#9c3b2e;
-    --red-soft:#f6e5e0;
-    --red-line:#dcaa9d;
-    --mono-bg:#edeadd;
-    --mono-ink:#4a4737;
-    --shadow: 0 1px 2px rgba(32,31,28,.04), 0 6px 20px rgba(32,31,28,.06);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#15171b;
-      --surface:#1c1f24;
-      --surface-2:#22262c;
-      --ink:#e9e7de;
-      --ink-soft:#a5a290;
-      --ink-faint:#726f60;
-      --border:#31353c;
-      --border-strong:#3d424a;
-      --accent:#8aa9d6;
-      --accent-ink:#0e1520;
-      --accent-soft:#20293a;
-      --accent-soft-ink:#a9c1e6;
-      --amber:#dcb06c;
-      --amber-soft:#332918;
-      --amber-line:#5a481f;
-      --red:#e0988a;
-      --red-soft:#332320;
-      --red-line:#5c352e;
-      --mono-bg:#262a24;
-      --mono-ink:#c9c6b3;
-      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#15171b;
-    --surface:#1c1f24;
-    --surface-2:#22262c;
-    --ink:#e9e7de;
-    --ink-soft:#a5a290;
-    --ink-faint:#726f60;
-    --border:#31353c;
-    --border-strong:#3d424a;
-    --accent:#8aa9d6;
-    --accent-ink:#0e1520;
-    --accent-soft:#20293a;
-    --accent-soft-ink:#a9c1e6;
-    --amber:#dcb06c;
-    --amber-soft:#332918;
-    --amber-line:#5a481f;
-    --red:#e0988a;
-    --red-soft:#332320;
-    --red-line:#5c352e;
-    --mono-bg:#262a24;
-    --mono-ink:#c9c6b3;
-    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    --bg:#F7F8FA;
+    --surface:#FFFFFF;
+    --surface-2: color-mix(in srgb, var(--line) 45%, var(--surface));
+    --ink:#21262E;
+    --muted:#6B7280;
+    --muted-faint: color-mix(in srgb, var(--muted) 55%, var(--surface));
+    --line:#E2E5EA;
+    --line-strong: color-mix(in srgb, var(--ink) 18%, var(--line));
+    --accent:#2B4C7E;
+    --accent-ink:#FFFFFF;
+    --accent-soft: color-mix(in srgb, var(--accent) 10%, var(--surface));
+    --accent-soft-ink: var(--accent);
+    --warning:#8C6A20;
+    --warning-soft: color-mix(in srgb, var(--warning) 17%, var(--surface));
+    --warning-line: color-mix(in srgb, var(--warning) 45%, var(--surface));
+    --danger:#A23B33;
+    --danger-soft: color-mix(in srgb, var(--danger) 17%, var(--surface));
+    --danger-line: color-mix(in srgb, var(--danger) 45%, var(--surface));
+    --success:#2E6E63;
+    --success-soft: color-mix(in srgb, var(--success) 17%, var(--surface));
+    --success-line: color-mix(in srgb, var(--success) 45%, var(--surface));
+    --mono-bg: color-mix(in srgb, var(--accent) 6%, var(--surface));
+    --mono-ink: var(--muted);
   }
 
   *{box-sizing:border-box;}
   body{
     background:var(--bg);
     color:var(--ink);
-    font-family:'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    font-family:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
     line-height:1.75;
     font-size:15.5px;
   }
   h1,h2,h3,h4{
-    font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;
+    font-family:'Zen Kaku Gothic New','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
     color:var(--ink);
     text-wrap:balance;
     line-height:1.4;
@@ -98,7 +52,7 @@
   }
   a{color:var(--accent);}
   code, .path{
-    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
   }
 
   /* ---------- shell layout ---------- */
@@ -108,7 +62,7 @@
     min-height:100vh;
   }
   .sidebar{
-    border-right:1px solid var(--border);
+    border-right:1px solid var(--line);
     background:var(--surface);
     padding:20px 14px 60px;
     position:sticky;
@@ -118,13 +72,13 @@
   }
   .brand{
     padding:6px 10px 16px;
-    border-bottom:1px solid var(--border);
+    border-bottom:1px solid var(--line);
     margin-bottom:14px;
   }
   .brand .co{
     font-size:11px;
     letter-spacing:.14em;
-    color:var(--ink-faint);
+    color:var(--muted-faint);
     text-transform:uppercase;
   }
   .brand h1{
@@ -136,8 +90,8 @@
   .search-wrap input{
     width:100%;
     padding:9px 12px;
-    border-radius:8px;
-    border:1px solid var(--border-strong);
+    border-radius:6px;
+    border:1px solid var(--line-strong);
     background:var(--surface-2);
     color:var(--ink);
     font-size:13.5px;
@@ -154,7 +108,7 @@
     align-items:baseline;
     gap:8px;
     padding:8px 8px;
-    border-radius:7px;
+    border-radius:6px;
     font-weight:700;
     font-size:13.5px;
     color:var(--ink);
@@ -162,7 +116,8 @@
   nav.toc summary::-webkit-details-marker{display:none;}
   nav.toc summary:hover{background:var(--surface-2);}
   nav.toc summary .num{
-    font-family:'JetBrains Mono',monospace;
+    font-family:'IBM Plex Mono',monospace;
+    font-variant-numeric:tabular-nums;
     font-size:11px;
     color:var(--accent);
     min-width:1.4em;
@@ -170,7 +125,7 @@
   nav.toc summary::after{
     content:'▸';
     margin-left:auto;
-    color:var(--ink-faint);
+    color:var(--muted-faint);
     font-size:10px;
     transition:transform .15s ease;
   }
@@ -179,13 +134,13 @@
     list-style:none;
     margin:2px 0 8px 0;
     padding-left:22px;
-    border-left:1px solid var(--border);
+    border-left:1px solid var(--line);
     margin-left:14px;
   }
   nav.toc li a{
     display:block;
     text-decoration:none;
-    color:var(--ink-soft);
+    color:var(--muted);
     font-size:13px;
     padding:6px 8px;
     border-radius:6px;
@@ -196,13 +151,13 @@
     display:inline-block;
     font-size:9.5px;
     font-weight:700;
-    padding:1px 5px;
-    border-radius:4px;
+    padding:1px 7px;
+    border-radius:999px;
     margin-left:6px;
     vertical-align:middle;
     letter-spacing:.02em;
   }
-  .badge-mini.upd{background:var(--amber-soft); color:var(--amber); border:1px solid var(--amber-line);}
+  .badge-mini.upd{background:var(--warning-soft); color:var(--warning); border:1px solid var(--warning-line);}
   .badge-mini.new{background:var(--accent-soft); color:var(--accent-soft-ink); border:1px solid var(--accent);}
 
   /* ---------- main content ---------- */
@@ -210,13 +165,13 @@
   .hero{
     padding-bottom:28px;
     margin-bottom:34px;
-    border-bottom:1px solid var(--border);
+    border-bottom:1px solid var(--line);
   }
   .hero .co{
     font-size:12px;
     letter-spacing:.16em;
     text-transform:uppercase;
-    color:var(--ink-faint);
+    color:var(--muted-faint);
     font-weight:700;
   }
   .hero h1{
@@ -226,7 +181,7 @@
   }
   .hero p.lede{
     margin-top:14px;
-    color:var(--ink-soft);
+    color:var(--muted);
     font-size:15.5px;
     max-width:62ch;
   }
@@ -244,8 +199,8 @@
     padding:5px 10px;
     border-radius:999px;
     background:var(--surface-2);
-    border:1px solid var(--border);
-    color:var(--ink-soft);
+    border:1px solid var(--line);
+    color:var(--muted);
   }
 
   .catgroup{margin-bottom:64px;}
@@ -256,7 +211,8 @@
     margin-bottom:6px;
   }
   .catgroup > .cathead .num{
-    font-family:'JetBrains Mono',monospace;
+    font-family:'IBM Plex Mono',monospace;
+    font-variant-numeric:tabular-nums;
     color:var(--accent);
     font-weight:700;
     font-size:15px;
@@ -266,7 +222,7 @@
     font-weight:900;
   }
   .catgroup > .catdesc{
-    color:var(--ink-soft);
+    color:var(--muted);
     font-size:14px;
     margin:6px 0 28px;
     max-width:64ch;
@@ -274,11 +230,10 @@
 
   article.doc{
     background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:14px;
+    border:1px solid var(--line);
+    border-radius:8px;
     padding:30px 32px;
     margin-bottom:22px;
-    box-shadow:var(--shadow);
     scroll-margin-top:24px;
   }
   article.doc > .dochead{
@@ -295,7 +250,8 @@
     min-width:0;
   }
   article.doc .subnum{
-    font-family:'JetBrains Mono',monospace;
+    font-family:'IBM Plex Mono',monospace;
+    font-variant-numeric:tabular-nums;
     color:var(--accent);
     font-size:13px;
     font-weight:700;
@@ -314,9 +270,9 @@
     gap:4px;
     font-family:inherit;
     font-size:11.5px;
-    color:var(--ink-soft);
+    color:var(--muted);
     background:var(--surface-2);
-    border:1px solid var(--border);
+    border:1px solid var(--line);
     border-radius:6px;
     padding:4px 9px;
     cursor:pointer;
@@ -333,7 +289,7 @@
     border-color:var(--accent);
   }
   article.doc .lede{
-    color:var(--ink-soft);
+    color:var(--muted);
     font-size:13.5px;
     margin:10px 0 20px;
   }
@@ -356,39 +312,39 @@
     font-size:13.5px;
   }
   article.doc th, article.doc td{
-    border:1px solid var(--border);
+    border:1px solid var(--line);
     padding:8px 10px;
     text-align:left;
     vertical-align:top;
   }
   article.doc th{background:var(--surface-2); font-weight:700;}
-  article.doc td.num, article.doc th.num{font-family:'JetBrains Mono',monospace; font-variant-numeric:tabular-nums;}
+  article.doc td.num, article.doc th.num{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;}
 
   .path{
     display:inline-block;
     background:var(--mono-bg);
     color:var(--mono-ink);
     padding:2px 7px;
-    border-radius:5px;
+    border-radius:6px;
     font-size:12.5px;
     word-break:break-all;
   }
   .kbd{
-    font-family:'JetBrains Mono',monospace;
+    font-family:'IBM Plex Mono',monospace;
     background:var(--surface-2);
-    border:1px solid var(--border-strong);
+    border:1px solid var(--line-strong);
     border-bottom-width:2px;
     padding:1px 6px;
-    border-radius:4px;
+    border-radius:6px;
     font-size:12px;
   }
 
   .callout{
-    border-radius:10px;
+    border-radius:8px;
     padding:14px 16px;
     margin:14px 0 20px;
     font-size:13.8px;
-    border:1px solid var(--border);
+    border:1px solid var(--line);
     background:var(--surface-2);
   }
   .callout .ctitle{
@@ -400,12 +356,12 @@
     gap:7px;
     margin-bottom:6px;
   }
-  .callout.update{background:var(--amber-soft); border-color:var(--amber-line);}
-  .callout.update .ctitle{color:var(--amber);}
-  .callout.caution{background:var(--red-soft); border-color:var(--red-line);}
-  .callout.caution .ctitle{color:var(--red);}
-  .callout.ref{background:var(--surface-2); border-color:var(--border);}
-  .callout.ref .ctitle{color:var(--ink-soft);}
+  .callout.update{background:var(--warning-soft); border-color:var(--warning-line);}
+  .callout.update .ctitle{color:var(--warning);}
+  .callout.caution{background:var(--danger-soft); border-color:var(--danger-line);}
+  .callout.caution .ctitle{color:var(--danger);}
+  .callout.ref{background:var(--surface-2); border-color:var(--line);}
+  .callout.ref .ctitle{color:var(--muted);}
   .callout p:last-child{margin-bottom:0;}
   .callout ul{margin-bottom:0;}
   .callout table{margin-bottom:0;}
@@ -423,9 +379,10 @@
     left:0; top:0;
     width:24px; height:24px;
     border-radius:50%;
-    background:var(--accent-soft);
-    color:var(--accent-soft-ink);
-    font-family:'JetBrains Mono',monospace;
+    background:var(--accent);
+    color:var(--accent-ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-variant-numeric:tabular-nums;
     font-weight:700;
     font-size:12px;
     display:flex; align-items:center; justify-content:center;
@@ -439,15 +396,15 @@
   }
   @media (max-width:640px){ .grid2{grid-template-columns:1fr;} }
   .minicard{
-    border:1px solid var(--border);
-    border-radius:10px;
+    border:1px solid var(--line);
+    border-radius:8px;
     padding:14px 16px;
     background:var(--surface-2);
   }
   .minicard h5{
     font-size:12.5px;
     font-weight:700;
-    color:var(--ink-soft);
+    color:var(--muted);
     letter-spacing:.03em;
     margin-bottom:6px;
   }
@@ -455,7 +412,7 @@
   footer.pagefoot{
     max-width:920px;
     padding:0 0 80px;
-    color:var(--ink-faint);
+    color:var(--muted-faint);
     font-size:12px;
   }
 
@@ -468,13 +425,12 @@
     border-radius:50%;
     display:flex;align-items:center;justify-content:center;
     text-decoration:none;
-    box-shadow:var(--shadow);
     font-size:16px;
     opacity:.9;
   }
 
   mark{
-    background:var(--amber-soft);
+    background:var(--warning-soft);
     color:var(--ink);
     border-radius:3px;
     padding:0 2px;
@@ -487,12 +443,11 @@
     z-index:60;
     width:42px; height:42px;
     align-items:center; justify-content:center;
-    border-radius:10px;
-    border:1px solid var(--border);
+    border-radius:6px;
+    border:1px solid var(--line);
     background:var(--surface);
     color:var(--ink);
     font-size:19px;
-    box-shadow:var(--shadow);
     cursor:pointer;
   }
 
@@ -515,21 +470,20 @@
   }
 
   @media print{
-    :root, :root[data-theme="dark"]{
-      --bg:#ffffff; --surface:#ffffff; --surface-2:#f3f1e8;
-      --ink:#111111; --ink-soft:#333333; --ink-faint:#555555;
-      --border:#cccccc; --border-strong:#999999;
-      --accent:#23406b; --accent-ink:#ffffff; --accent-soft:#e7edf5; --accent-soft-ink:#23406b;
-      --amber:#8f5f14; --amber-soft:#f7ecd6; --amber-line:#dcbb7c;
-      --red:#9c3b2e; --red-soft:#f6e5e0; --red-line:#dcaa9d;
-      --mono-bg:#eeeee4; --mono-ink:#333333;
-      --shadow:none;
+    :root{
+      --bg:#ffffff; --surface:#ffffff; --surface-2:#f0f2f5;
+      --ink:#111111; --muted:#333333; --muted-faint:#555555;
+      --line:#cccccc; --line-strong:#999999;
+      --accent:#2B4C7E; --accent-ink:#ffffff; --accent-soft:#e7edf5; --accent-soft-ink:#2B4C7E;
+      --warning:#8C6A20; --warning-soft:#f3ead4; --warning-line:#cbb17c;
+      --danger:#A23B33; --danger-soft:#f3ded9; --danger-line:#cf9c92;
+      --mono-bg:#eef1f5; --mono-ink:#333333;
     }
     body{background:#fff;}
     .shell{display:block;}
     .sidebar, #navToggle, #backtop, .search-wrap, .copylink-btn{display:none !important;}
     main{padding:0; max-width:100%;}
-    article.doc{box-shadow:none; border:1px solid var(--border); break-inside:avoid; page-break-inside:avoid;}
+    article.doc{border:1px solid var(--line); break-inside:avoid; page-break-inside:avoid;}
     .catgroup{break-inside:avoid-page;}
     a{color:var(--ink); text-decoration:underline;}
   }
@@ -1010,7 +964,7 @@
         <h4>⑦ FMSへの各コード・適正在庫数の入力</h4>
         <ul>
           <li><strong>見積り</strong>：チケット記載の見積番号にASIN・SKUコードを入力（商品タブの「変更」から編集）。</li>
-          <li><strong>在庫管理</strong>：チケット記載のFMS商品番号で検索し、適正在庫数（チケットの数値、都度変わるため要確認）とショップコード（ASIN＝ショップ名「Amazon（ASIN）」、SKUコード＝ショップ名「楽天」）を入力。<span style="color:var(--red);font-weight:700;">※BFIVEの商品はアカウント切替を「BFIVE個人販売」ではなく「BFIVE」にする。</span></li>
+          <li><strong>在庫管理</strong>：チケット記載のFMS商品番号で検索し、適正在庫数（チケットの数値、都度変わるため要確認）とショップコード（ASIN＝ショップ名「Amazon（ASIN）」、SKUコード＝ショップ名「楽天」）を入力。<span style="color:var(--danger);font-weight:700;">※BFIVEの商品はアカウント切替を「BFIVE個人販売」ではなく「BFIVE」にする。</span></li>
         </ul>
 
         <h4>⑧ 商品リリース準備（公開直前の最終工程）</h4>
@@ -1094,7 +1048,7 @@
         </ol>
 
         <h4>エラーが出た場合</h4>
-        <p>自分で対処できないエラーはAmazonへの電話が最も効率的です。セラーセントラル右上のヘルプ＞【商品登録】＞【その他の商品に関する問題】＞【アソシエイトへ連絡する】＞詳細情報入力＞電話番号入力で折り返しを受けられます（<span style="color:var(--red);">3階の電話でのみ対応可能</span>）。</p>
+        <p>自分で対処できないエラーはAmazonへの電話が最も効率的です。セラーセントラル右上のヘルプ＞【商品登録】＞【その他の商品に関する問題】＞【アソシエイトへ連絡する】＞詳細情報入力＞電話番号入力で折り返しを受けられます（<span style="color:var(--danger);">3階の電話でのみ対応可能</span>）。</p>
       </article>
 
       <article class="doc" id="item-itemrobot-new">
@@ -1166,7 +1120,7 @@
           <li><strong>itemRobotで商品情報を修正</strong>：商品コード・カテゴリ・商品名で検索し「編集」。まとめる場合は各種説明文を統合する（参考：bf-fit24s-wp）。</li>
           <li><strong>在庫設定（在庫タイプ）の変更</strong>：選択肢項目1を「サイズ」、選択肢項目2を「カラー」に変更（保存済みの在庫情報は削除される旨の警告が出るが、後で再編集するため「更新」でよい）。</li>
           <li><strong>選択肢情報のまとめて変更・追加</strong>：サイズの子番号＝サイズ、カラーの子番号＝商品No（FMSまたはitemRobotの商品コードで確認）。</li>
-          <li><strong>選択肢情報－在庫・編集</strong>：ショップ別の選択肢（SKU管理番号・システム連携用SKU番号・個別商品コード等）をすべてASINに変更。Amazonデータベースで<span class="kbd">Ctrl+F</span>検索しながら確認すると早い。<span style="color:var(--red);font-weight:700;">同じサイズのASINが楽天・Yahoo!・Amazonで一致しているか必ずセルフチェックする。</span></li>
+          <li><strong>選択肢情報－在庫・編集</strong>：ショップ別の選択肢（SKU管理番号・システム連携用SKU番号・個別商品コード等）をすべてASINに変更。Amazonデータベースで<span class="kbd">Ctrl+F</span>検索しながら確認すると早い。<span style="color:var(--danger);font-weight:700;">同じサイズのASINが楽天・Yahoo!・Amazonで一致しているか必ずセルフチェックする。</span></li>
           <li><strong>SKUごとに入力（楽天）</strong>：カタログID＝未入力、カタログIDなしの理由＝該当商品コードなし、カラー・ブランド名・メーカー型番（FMSの商品No）・素材・代表カラー・サイズを入力。</li>
           <li><strong>アップロードを実行</strong>：楽天市場・Yahoo!を個別にアップロード。「アップデート・ダウンロード履歴」で反映確認（危険マーク＝エラー、画像URL不正が典型例）。</li>
         </ol>
@@ -1222,7 +1176,7 @@
         <p class="lede">「ラベル屋さん」はエーワン製品専用の無料ラベル・カード作成ソフトです（<span class="path">https://www.labelyasan.com/</span>、バージョン10を使用）。RSL倉庫での仕分け用に、SKUコード・代表商品コード（ASIN）・商品名を記載したバーコードラベルを作成します。</p>
         <ol class="flowlist">
           <li>作成指示のExcel（<span class="path">■共通 ▶ 楽天 ▶ バーコード ▶ 指示を受けたアカウント商品</span>）とラベル屋さんの「バーコードテンプレート」（同フォルダ）を開く。</li>
-          <li>「デザイン編集」で1枠を拡大表示し、バーコードのスタイル欄に代表商品コード（ASIN）を値でコピー＆ペースト（<span style="color:var(--red);">半角スペースが入ると異なるバーコードになるため要確認</span>）。</li>
+          <li>「デザイン編集」で1枠を拡大表示し、バーコードのスタイル欄に代表商品コード（ASIN）を値でコピー＆ペースト（<span style="color:var(--danger);">半角スペースが入ると異なるバーコードになるため要確認</span>）。</li>
           <li>画像_1（SKUコード＋代表商品コード）、画像_2（商品名）をそれぞれExcelから値でコピペし、位置・サイズ（横60.00mm・縦7.00mm）を調整。</li>
           <li>3オブジェクトを選択し<span class="kbd">Ctrl+V</span>でコピー（右クリックコピー不可）、隣の枠にも貼り付けて2列分作成（6マスで1サイズ、1枚で4サイズ）。</li>
           <li>ページを追加し左上1マスだけ複製して貼り付け、レイアウトで1ページ目に戻してから「印刷へ」＞印刷ページ「1〜1」＞【PDF書き出し】。</li>
@@ -1415,7 +1369,7 @@
         <h4>BOSSへCSV取り込み・発送</h4>
         <ol class="flowlist">
           <li>BOSS＞入荷＞CSV取り込みでファイルを選択し読み込み、ファイル取込を実行。ファイル取込履歴で処理結果を確認（エラー時は原因を確認し再保存・再アップロード。再印刷も忘れずに）。</li>
-          <li>ヤマト運輸で発送（送付先：〒275-0001 千葉県習志野市東習志野7-3-1 Landport東習志野 4F 407バース、電話：050-5432-2790）。ヤマトビジネスメンバーズ（0368066533アカウント）＞B2クラウド「1件ずつ発行」＞発払いにチェック＞お届け日時は入荷予定日・午前中を指定（<span style="color:var(--red);">RSL着荷締切は11:59のため、12:00以降は翌日着荷扱い</span>）。出荷予定個数に小口数を入力し印字。お届け先検索で「33169(株)フラスコ100cc RSL入荷」を選択。</li>
+          <li>ヤマト運輸で発送（送付先：〒275-0001 千葉県習志野市東習志野7-3-1 Landport東習志野 4F 407バース、電話：050-5432-2790）。ヤマトビジネスメンバーズ（0368066533アカウント）＞B2クラウド「1件ずつ発行」＞発払いにチェック＞お届け日時は入荷予定日・午前中を指定（<span style="color:var(--danger);">RSL着荷締切は11:59のため、12:00以降は翌日着荷扱い</span>）。出荷予定個数に小口数を入力し印字。お届け先検索で「33169(株)フラスコ100cc RSL入荷」を選択。</li>
           <li>小口が分かれる場合、親の伝票を貼った箱に「納品書在中」とマジックペンで記入し納品書を同梱。箱に貼られた無関係な伝票は剥がすかマジックペンで✕印を付ける（受け入れ不可の可能性があるため）。</li>
         </ol>
         <div class="callout ref"><div class="ctitle">👤 担当者について（担当者ヒアリングで追記）</div><p style="margin-bottom:0;">新商品登録フロー（<a href="#item-flow">3.1章</a>）の最終ステップである「入荷リストのBOSSアップロード」は、木川さんが担当しています。この工程について不明点がある場合は木川さんに確認してください。</p></div>
@@ -1428,7 +1382,7 @@
 
       <article class="doc" id="stock-qa">
         <div class="dochead"><h3><span class="subnum">4.8</span>RSLからの連絡対応（入荷QA）</h3></div>
-        <p>長期在庫の発送などでBOSSへ送った商品にミスがあった場合、RSLから「入荷QA」の連絡が届きます。<span style="color:var(--red);">受信から1週間以内の対応が必要</span>です。詳細はRSLカルテまたはRSL契約情報で確認できます。管理リストを開き商品コード（ASIN）やパターンを確認します。</p>
+        <p>長期在庫の発送などでBOSSへ送った商品にミスがあった場合、RSLから「入荷QA」の連絡が届きます。<span style="color:var(--danger);">受信から1週間以内の対応が必要</span>です。詳細はRSLカルテまたはRSL契約情報で確認できます。管理リストを開き商品コード（ASIN）やパターンを確認します。</p>
         <p>パターン例：「入荷予定無」＝リストにない商品が届いた場合（枚数違いも該当）。届く予定のものが届かないケースはミスとみなされません（一部入荷として扱われる）。ただし予定リストをもとに人員配置しているため、件数が多いと注意勧告を受けることがあります。</p>
         <ol class="flowlist">
           <li>対応方法をプルダウンで選択。入荷させる場合は入荷管理番号を発行する必要がある（＝入荷予定を手動作成。通常のCSVアップロードを手入力で行うイメージ）。</li>
@@ -1451,7 +1405,7 @@
         <h4>② 注文処理の注意点</h4>
         <ul>
           <li>お待たせしないため、<strong>注文完了日が古いものから</strong>処理する（ページが複数ある場合は最終ページの下段から着手）。</li>
-          <li>代引き5万円以上は緊急連絡先（ご本人様以外）を確認。<span style="color:var(--red);">30万円以上は代引き支払い不可。</span></li>
+          <li>代引き5万円以上は緊急連絡先（ご本人様以外）を確認。<span style="color:var(--danger);">30万円以上は代引き支払い不可。</span></li>
           <li>注文者のメールをGmail（frasco100.cc）で検索し、注文前後のやり取りを確認。既に回答済みの内容を再度尋ねないようにする。メールがある場合は同時処理し、下書きに「苗字+処理中」のメモを残す。</li>
           <li>担当部署を【個人販売】に変更（既に変更済みのこともある）。</li>
         </ul>
@@ -1485,7 +1439,7 @@
         <ol class="flowlist">
           <li>FMSから該当注文をダウンロード（区分【BOSS】、文字コードはそのまま）。</li>
           <li>ダウンロードしたデータを開かずドラッグ＆ドロップでBOSS【受注】＞【CSV取込】へ。テンプレート【FMS注文情報取込テンプレート】を選択し【ファイル取込】。</li>
-          <li>取込結果を【受注】一覧のステータス【出荷待ち】で確認。<span style="color:var(--red);">赤丸付きは何らかの問題あり（多くは入荷待ち＝在庫なし）。</span></li>
+          <li>取込結果を【受注】一覧のステータス【出荷待ち】で確認。<span style="color:var(--danger);">赤丸付きは何らかの問題あり（多くは入荷待ち＝在庫なし）。</span></li>
           <li>入荷待ちの場合はお客様へ確認連絡（メール送信時はステータスを「未確定」に）。選択肢は再入荷待ち（状況により最大1か月）またはキャンセル。</li>
           <li>CSV読込後は必ずBOSSリストの総合計とFMS見積もりプレビューの合計を照合し、問題なければ注文確定メールを送信。</li>
         </ol>
@@ -1560,7 +1514,7 @@
 
       <article class="doc" id="cs-mall">
         <div class="dochead"><h3><span class="subnum">6.1</span>モール別問い合わせ対応</h3></div>
-        <p class="lede">メールチェックは朝・昼・夕方・17:30頃（サイト営業時間は18時まで）、見たらすぐ対応します。<span style="color:var(--red);">水曜は定休のためイレギュラー以外は急がなくてよい</span>です。</p>
+        <p class="lede">メールチェックは朝・昼・夕方・17:30頃（サイト営業時間は18時まで）、見たらすぐ対応します。<span style="color:var(--danger);">水曜は定休のためイレギュラー以外は急がなくてよい</span>です。</p>
         <div class="callout ref">
           <div class="ctitle">📁 対応が必要なメール・参照先</div>
           <ul style="margin-bottom:0;">
@@ -1613,7 +1567,7 @@
           <li>FMS＞在庫管理＞ショップコードにASINを入力して検索。</li>
           <li>注文番号または注文者氏名で検索し、誰が何個発送したかを特定（担当者が休みの場合は木川さんに依頼し、翌日担当のパートさんへ経緯を共有）。</li>
           <li>担当パートさん（不在時は木川さん）へ、再発送とお詫び状同封を依頼（パートさんは不慣れなため、送付方法・同梱物・入力箇所を具体的に指示する）。<strong>宅配便で発送</strong>（メール便は到着が遅れるため）。送り状番号も確認。</li>
-          <li>テンプレート（<span class="path">■商品部 ▶ 個人販売 ▶ ●ユーザー対応 ▶ 問い合わせテンプレ(amazon)</span>）を使い、送り状番号が分かり次第メール返信。<span style="color:var(--red);">パッケージ1の送り状番号は上書きしない（上書きすると出荷日も変わり遅延発送扱いになる）。</span>送り状番号は出品者メモへパートさんに入力してもらう。</li>
+          <li>テンプレート（<span class="path">■商品部 ▶ 個人販売 ▶ ●ユーザー対応 ▶ 問い合わせテンプレ(amazon)</span>）を使い、送り状番号が分かり次第メール返信。<span style="color:var(--danger);">パッケージ1の送り状番号は上書きしない（上書きすると出荷日も変わり遅延発送扱いになる）。</span>送り状番号は出品者メモへパートさんに入力してもらう。</li>
         </ol>
       </article>
 
@@ -1679,7 +1633,7 @@
 
       <article class="doc" id="ad-coupon">
         <div class="dochead"><h3><span class="subnum">7.3</span>楽天クーポン＆ポイント変倍</h3></div>
-        <p class="lede">毎月の作業です。<span style="color:var(--red);">クーポンとポイント変倍はRSSの申請と有効期間が被ると商品の申請が不合格になるため注意</span>してください。</p>
+        <p class="lede">毎月の作業です。<span style="color:var(--danger);">クーポンとポイント変倍はRSSの申請と有効期間が被ると商品の申請が不合格になるため注意</span>してください。</p>
 
         <h4>クーポン作成</h4>
         <p>有効期間は約1か月（開始はRMSでリンクを変更できる時間に合わせる、終了は基本月末だが翌日が土日の場合はクーポン更新ができないため翌平日23:59に設定）。<span class="path">RMS＞店舗設定＞クーポン設定＞クーポン（配布型）</span>で作成、基本は過去のクーポンをコピーして有効期間・対象商品のみ変更します（※クーポンのルールは変わることがあるため都度確認）。</p>
@@ -1780,7 +1734,7 @@
         <h4>① SKU実績レポート（月次）</h4>
         <p><span class="path">RMS＞店舗様向け情報＞物流支援サービス＞在庫レポート＞月次レポートのSKU実績レポート（月次）</span>から最新月のレポートをダウンロード。1〜2行目削除、AS1「カテゴリ」・AT1「原価」を追加。BOSSの商品在庫CSV（<span class="path">商品・在庫＞何も入れず検索＞出力ボタン＞CSV会議資料（VLOOKUP）</span>）を元データにASINでVLOOKUP（メーカー品番を数値変換、商品カテゴリはデータベース、原価はFMS在庫管理を確認）。AV1「在庫金額」を追加し、当月末在庫（W列）×原価（AT列）で算出（空欄行がある場合は削除すると一括計算できる）。O列に「月間入荷回数」列を挿入し、月間出荷数・前月末/当月末在庫数を黄色で塗りつぶし。月間入荷回数は「新規入荷予定登録(日付)」フォルダの先月分Excel（木川さん発送分、追加分のみ対象。長期・返品・新規は不要）からCOUNTIF関数（$固定）でASIN軸に集計し、月次レポートへVLOOKUP（エラーは0）。最後に値でコピーし直して共有にExcelブックで保存（保存前に紐づけをセルフチェック）。ファイル名は「当月」、格納先は<span class="path">■商品部 ▶ 個人販売 ▶ ◇在庫管理</span>。</p>
         <h4>② 在庫エイジングレポート（日次）</h4>
-        <p>同メニューの日次レポート「在庫エイジングレポート」最新日付分をダウンロード。1〜3行目削除、B列・C列間に「ブランド」「カテゴリ」「FMS」「メーカーサイズ」列を挿入。①で使用したBOSS商品在庫CSVを元にASINでVLOOKUP（エラーはそのまま放置でOK、荒井さんが後で確認）。<span style="color:var(--red);">ASIN列の末尾に半角スペースがあるため注意（<code>=LEFT</code>関数で除去）。</span>値でコピーし直して同フォルダに保存（ファイル名は当日中でなくても「○○01」で登録可）。</p>
+        <p>同メニューの日次レポート「在庫エイジングレポート」最新日付分をダウンロード。1〜3行目削除、B列・C列間に「ブランド」「カテゴリ」「FMS」「メーカーサイズ」列を挿入。①で使用したBOSS商品在庫CSVを元にASINでVLOOKUP（エラーはそのまま放置でOK、荒井さんが後で確認）。<span style="color:var(--danger);">ASIN列の末尾に半角スペースがあるため注意（<code>=LEFT</code>関数で除去）。</span>値でコピーし直して同フォルダに保存（ファイル名は当日中でなくても「○○01」で登録可）。</p>
         <h4>③ 採算表への反映</h4>
         <p>①で算出した「在庫金額」を、全体・各アカウント毎に「◆個人販売採算表」のAP列（<span class="path">■商品部 ▶ 個人販売 ▶ ◇目標・売上</span>）へ入力します。</p>
       </article>
@@ -1789,7 +1743,7 @@
         <div class="dochead"><h3><span class="subnum">8.5</span>Amazonデータベース運用</h3></div>
         <p class="lede">格納先：<span class="path">■商品部 ▶ 個人販売 ▶ Amazon ▶ アマストリーム ▶ 集計</span>。シートはロックされているため解除して編集し、終了後は必ずロックして保存します。</p>
         <h4>商品登録アップロード後の入力（A〜L列）</h4>
-        <p>ASINコード（アップロード完了後に発行。並び替え「作成日：新しい順」または「最終更新日」で検索しやすい）、SKU（アップロードExcelから値貼り）、商品カテゴリー（チケット記載）、商品名・カラー/デザイン（Excelからコピペ）、商品写真URL（1枚目）、配送方法（商品が入るサイズで選択）、初回見積もり番号（指示書の見積もりNo）を入力します。親商品を登録した場合はデータベースにも親商品を入力（G列以降は空欄）。<span style="color:var(--red);">ASINコピー時はカラー・サイズのズレ、余分な空白に注意（ダブルクリックで選択してからペースト）。</span></p>
+        <p>ASINコード（アップロード完了後に発行。並び替え「作成日：新しい順」または「最終更新日」で検索しやすい）、SKU（アップロードExcelから値貼り）、商品カテゴリー（チケット記載）、商品名・カラー/デザイン（Excelからコピペ）、商品写真URL（1枚目）、配送方法（商品が入るサイズで選択）、初回見積もり番号（指示書の見積もりNo）を入力します。親商品を登録した場合はデータベースにも親商品を入力（G列以降は空欄）。<span style="color:var(--danger);">ASINコピー時はカラー・サイズのズレ、余分な空白に注意（ダブルクリックで選択してからペースト）。</span></p>
         <h4>Amazon広告キャンペーン集計（月初にインポート）</h4>
         <p>広告キャンペーンマネージャーで単月ごとの集計をExcelへ入力します（参照元：<span class="path">■商品部 ▶ 個人販売 ▶ Amazon ▶ 月次別データ ▶ キャンペーン</span>、保存先：<span class="path">■商品部 ▶ 個人販売 ▶ Amazon ▶ 各種データ ▶ Amazonキャンペーン集計.Excel</span>）。桁区切りが必要な列：D列（インプレッション数）、G列（広告費）、J列（売上）。キャンペーン名は、広告＞広告キャンペーンマネージャーでASINからAmazonデータベースを検索し、商品カテゴリと広告グループ名称を統一。変更後はキャンペーン集計Excelのシート名も揃えます。</p>
       </article>
